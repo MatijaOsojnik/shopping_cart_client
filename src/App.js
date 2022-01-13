@@ -1,25 +1,27 @@
-import logo from './logo.svg';
+import React, {useState, useEffect} from "react"
+import API from "./api/controllers/items";
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = (props) => {
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    API.getItems().then(res => setItems(res))
+  }, [])
+
+    return (
+      <div className="flex justify-center content-center">
+        <div className="text-3xl font-bold">
+          {items.map((item) =>
+            (
+              <h1 key={item.id} className="text-center">
+               {item.name}
+              </h1>
+            )
+          )}
+        </div>
+      </div>
+    );
 }
 
 export default App;
