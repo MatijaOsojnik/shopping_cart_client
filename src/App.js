@@ -1,25 +1,31 @@
-import React, {useState, useEffect} from "react"
-import API from "./api/controllers/items";
-import './App.css';
+import React from "react"
+import Cart from "./components/Cart"
+import Items from "./pages/Items"
 
 const App = (props) => {
-  const [items, setItems] = useState([]);
+  // const [items, setItems] = useState([]);
+  // const [token, setToken] = useState("");
 
-  useEffect(() => {
-    API.getItems().then(res => setItems(res))
-  }, [])
+  // useEffect(() => {   
+  //   const local_token = sessionStorage.get("token")
+  //   setToken(local_token);
+  //   API.getItems().then(res => setItems(res))
+  // }, [])
 
     return (
       <div className="flex justify-center content-center">
-        <div className="text-3xl font-bold">
-          {items.map((item) =>
+        <Items />
+
+        <Cart/>
+
+          {/* {items.map((item) =>
             (
               <h1 key={item.id} className="text-center">
                {item.name}
               </h1>
             )
-          )}
-        </div>
+          )} */}
+       
       </div>
     );
 }
